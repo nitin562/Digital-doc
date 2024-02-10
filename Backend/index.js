@@ -32,7 +32,7 @@ let admin = new Map();
 //io worker
 io.on("connection", (socket) => {
   socket.on("connectRoom", async (room_id, email) => {
-    console.log("Get", room_id, email, admin);
+
     if (admin.has(room_id)) {
       const adminId = admin.get(room_id);
       try {
@@ -40,9 +40,9 @@ io.on("connection", (socket) => {
           .to(adminId)
           .timeout(7000)
           .emitWithAck("GetConnectReq", socket.id, email);
-        console.log(response);
+      
       } catch (error) {
-        console.log(error);
+    
         socket.emit("ConnectionTimeout");
       }
     } else {
@@ -52,12 +52,11 @@ io.on("connection", (socket) => {
 
       socket.emit("Connected", "self", room_id);
     }
-    console.log(socket.rooms);
-    console.log("after it", admin);
+    
   });
   socket.on("disconnectRoom", async (url, email, currentUsers) => {
     //save Mechanism is not implemented yet
-    console.log("disconnect");
+   
     if (currentUsers[email].admin===true) {
       admin.delete(url);
       socket.leave(url);
@@ -65,7 +64,7 @@ io.on("connection", (socket) => {
         const newAdminId=Array.from(io.sockets.adapter.rooms.get(url))[0]
         admin.set(url,newAdminId)
         const response=await io.to(newAdminId).timeout(7000).emitWithAck("YouAreAdminNow")
-        console.log(response)
+  
         delete currentUsers[email]
         currentUsers[response[0].email].admin=true
         socket.broadcast.to(url).emit("getuserConnected",currentUsers,email)
@@ -73,17 +72,17 @@ io.on("connection", (socket) => {
       
       
       socket.emit("disconnected");
-      console.log("send");
+   
     } else {
       if(!socket.rooms.has(url)){
-        console.log("break")
+    
         return
       }
       socket.leave(url);
 
       socket.emit("disconnected");
         delete currentUsers[email]
-      console.log("other disconnect");
+     
       socket.broadcast.to(url).emit("otherLeaved", email,currentUsers); //
     }
   });
@@ -95,13 +94,13 @@ io.on("connection", (socket) => {
     // to get other's socket as we need it to make him join to the room
     const socketOfOther = io.sockets.sockets.get(id);
     socketOfOther.join(room_id);
-    console.log(id, room_id, socket.rooms);
+
     try {
       const response = await io
         .to(id)
         .timeout(7000)
         .emitWithAck("Connected","connect to other", room_id);
-      console.log("prev",connectedUser)
+    
       if (response) {
  
         connectedUser[response[0].email]={
@@ -114,27 +113,25 @@ io.on("connection", (socket) => {
             }
         }
         alreadyColors[response[0].email]=null
-        console.log(response,connectedUser)
+      
         // console.log(newCollabArr,response)
         io.to(room_id).emit("getuserConnected", connectedUser,response[0].email,alreadyColors); //
       }
     } catch (error) {
       console.log("error", error);
     }
-    console.log(title)
+
     socket.to(id).emit("AllowingToConnect",title, content, room_id);
   });
   // socket.on("dummy",(a,b)=>{
   //   console.log("values",a,b)
   // })
   socket.on("Send-change", (delta, id, pos,email) => {
-    console.log(id);
-    console.log(delta);
-    console.log(io.sockets.adapter.rooms.get(id))
+  
 
   
     if (socket.rooms.has(id)) {
-      console.log("true");
+   
       
       socket.broadcast.to(id).emit("recieve-change", delta, pos,email);
     }
