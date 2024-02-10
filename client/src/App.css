@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* cursor animation */
+.animateCursor{
+  animation: animateCursor 1s linear infinite;
+}
+@keyframes animateCursor {
+  0%,100%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+}
+/* Quill */
+.ql-toolbar {
+    position: sticky; 
+    z-index: 40;
+    top: 0rem;
+  display: flex;
+  justify-content: center;
+ 
+  border: 0 !important;
+
+  /* box-shadow: 0 0 0.5rem #000; */
+  /* border-bottom: 0.1rem solid #918e8e !important; */
+}
+.ql-toolbar,
+.ql-container {
+  width: 100% !important;
+  margin: 0 !important;
+  @apply bg-white;
+
+}
+.ql-formats{
+
+  background-color: #fff !important;
+}
+.ql-container {
+  min-height: 200vh;
+  text-wrap: wrap;
+  margin-top: 1rem !important;
+  width: 75% !important;
+  flex: 1 !important;
+   @apply bg-lightBg;
+  border: 0.1rem solid rgb(52, 57, 59) !important;
+}
+/* Scrollbar design */
+.scrollbar {
+    overflow: hidden scroll;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 0.3rem;
+}
+.scrollbar::-webkit-scrollbar-track {
+  width: 0.1rem;
+  background-color: rgb(236, 245, 245);
+  border-radius: 3rem;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  width: 0.05rem;
+  background-color: #000201;
+  border-radius: 2.5rem;
+}
