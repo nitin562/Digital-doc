@@ -1,8 +1,8 @@
 // const {links}= require("../../links")
-import {links} from "../../links"
+import {origin} from "../../links"
 const fetchup=async(url,method,userHeader={},Body=null)=>{
     const defaultHeaders={
-        Origin:"http://localhost:5173"
+        Origin:origin
     }
     let options={
         method,
