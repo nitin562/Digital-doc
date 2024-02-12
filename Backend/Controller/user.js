@@ -22,7 +22,7 @@ const postUser = async (req, res) => {
       password: hashPassword,
     });
     const token = setToken(storeUser._id);
-    res.cookie("token", token);
+    res.cookie("token", token,{httpOnly:true,domain:process.env.domain});
     res
       .status(201)
       .json({ success: 1, name: storeUser.userName, email: storeUser.email });
@@ -54,7 +54,7 @@ const getUser = async (req, res) => {
       return res.status(400).json({ success: -3, error: "Password is wrong" });
     }
     const token = setToken(client._id);
-    res.cookie("token", token);
+    res.cookie("token", token,{httpOnly:true,domain:process.env.domain});
     res
       .status(201)
       .json({ success: 1, name: client.userName, email: client.email });
