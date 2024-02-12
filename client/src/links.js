@@ -1,4 +1,4 @@
-const base="http://localhost:8000"
+const base="https://digitaldoc-2zu8.onrender.com/"
 const links={
     login:`${base}/api/auth/login`,
     signup:`${base}/api/auth/signup`,
@@ -10,5 +10,5 @@ const links={
 
 
 }
-const origin="http://localhost:5173"
+const origin="https://digital-doc.vercel.app/"
 export {base,links,origin}
