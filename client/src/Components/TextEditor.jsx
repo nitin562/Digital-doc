@@ -338,18 +338,7 @@ export default function TextEditor() {
     clientXY.current.y = y;
   };
 
-  const gettingMessageFromOtherTab = (event) => {
-    if (event.origin !== origin) {
-      return;
-    }
-
-    if (event.data && event.data.dataId) {
-      sessionStorage.setItem("SavedDocID", event.data.dataId);
-      FetchSavedDocInfo();
-    }
-    
-    
-  };
+  
   const FetchSavedDocInfo = async () => {
     if (!sessionStorage.getItem("SavedDocID") || currentData) {
       return;
@@ -441,7 +430,7 @@ export default function TextEditor() {
     }
 
     window.addEventListener("resize", onResize);
-    window.addEventListener("message", gettingMessageFromOtherTab);
+
     // window.addEventListener("beforeunload",onReload)
     FetchSavedDocInfo();
     refreshAction();

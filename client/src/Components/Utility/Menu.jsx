@@ -17,6 +17,8 @@ export default function Menu() {
     const url="/editor/"+uid
     const newTab=window.open(url,"_blank")
     newTab.sessionStorage.removeItem("SavedDocID")
+    newTab.sessionStorage.setItem("id",uid)
+
     
   }
   const SaveBtnFunc=async()=>{
