@@ -23,7 +23,7 @@ const getToken=(token)=>{
 }
 const extractIdForMiddleware=(req,res,next)=>{
     let token;
-    if(re.header("x-token")){
+    if(req.header("x-token")){
         token=req.header("x-token")
     }
    
