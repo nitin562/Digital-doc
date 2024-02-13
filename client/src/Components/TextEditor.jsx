@@ -443,7 +443,7 @@ export default function TextEditor() {
       // DisconnectWhenReload()
 
       window.removeEventListener("resize", onResize);
-      window.removeEventListener("message", gettingMessageFromOtherTab);
+     
       if (mainBodyRef.current) {
         mainBodyRef.current.removeEventListener("scroll", ReposCursor);
       }
