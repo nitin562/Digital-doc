@@ -2,11 +2,11 @@
 import {origin} from "../../links"
 const fetchup=async(url,method,userHeader={},Body=null)=>{
     const defaultHeaders={
-        Origin:origin
+        Origin:origin,
+        "x-token":sessionStorage.getItem("token")
     }
     let options={
         method,
-        credentials:"include",
         headers:{...defaultHeaders,...userHeader},
     }
     if(Body){

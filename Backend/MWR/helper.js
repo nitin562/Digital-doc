@@ -23,8 +23,8 @@ const getToken=(token)=>{
 }
 const extractIdForMiddleware=(req,res,next)=>{
     let token;
-    if(req.cookies && req.cookies.token){
-        token=req.cookies.token
+    if(re.header("x-token")){
+        token=req.header("x-token")
     }
    
     if(token){
