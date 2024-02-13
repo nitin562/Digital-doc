@@ -10,5 +10,5 @@ const links={
 
 
 }
-const origin="https://digital-doc.vercel.app/"
+const origin="https://digital-doc.vercel.app"
 export {base,links,origin}
