@@ -5,7 +5,6 @@ const links={
     getData:`${base}/api/Data/data`,
     postData:`${base}/api/Data/Save`,
     getDataAndCollabs:`${base}/api/Data/DataAndcollabs`,
-    logout:`${base}/api/auth/logout`,
     search:`${base}/api/Data/search`
 
 

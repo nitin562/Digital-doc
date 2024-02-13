@@ -72,9 +72,8 @@ export default function Login() {
     setload(false)
   }
   useEffect(() => {
-    const logout = async () => {
+    const logout = () => {
       if (sessionStorage.getItem("email")) {
-        await fetchup(links.logout, "GET");
         if (
           sessionStorage.getItem("connected")==="true"
         ) {

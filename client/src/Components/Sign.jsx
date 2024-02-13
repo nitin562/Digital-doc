@@ -18,7 +18,7 @@ export default function Sign() {
   const [errors, seterrors] = useState({ name: "", Email: "", password: "" });
   const [password, setpassword] = useState("");
   const [load, setload] = useState(false);
-  const { setcurrentUsers, colors, setcolorState, onlineUserRef } =
+  const {currentUsers, setcurrentUsers, colors, setcolorState, onlineUserRef } =
     useContext(context);
   const doSign = async (e) => {
     e.preventDefault();
@@ -92,9 +92,19 @@ export default function Sign() {
     setload(false);
   };
   useEffect(() => {
-    const logout = async () => {
+    const logout = () => {
       if (sessionStorage.getItem("email")) {
-        await fetchup(links.logout, "GET");
+        if (
+          sessionStorage.getItem("connected")==="true"
+        ) {
+          //connected then we have to disconnect
+          socket.emit(
+            "disconnectRoom",
+            sessionStorage.getItem("id"), //url
+            sessionStorage.getItem("email"),
+            currentUsers
+          );
+        }
         sessionStorage.clear()
 
       }

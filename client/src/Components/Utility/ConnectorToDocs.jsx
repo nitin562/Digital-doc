@@ -154,17 +154,17 @@ export default function ConnectorToDocs() {
       socket.off("ConnectionTimeout", NoConnection);
     };
   }, [socket]);
-  const logout = async () => {
+  const logout =  () => {
     if (
       window.confirm(
-        "Logout will not save your current doc. Do you want to logout?"
+        "Logout may not save your unsaved docs. Do you want to logout?"
       ) === false
     ) {
       return;
     }
-    const result = await fetchup(links.logout, "GET");
 
-    if (result.success === 1) {
+
+   
       if (
         sessionStorage.getItem("connected")==="true"
       ) {
@@ -179,7 +179,7 @@ export default function ConnectorToDocs() {
       sessionStorage.clear()
 
       nav("/");
-    }
+    
   };
   return (
     <div className="w-1/2 flex justify-end gap-x-4">

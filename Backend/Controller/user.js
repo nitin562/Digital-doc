@@ -63,18 +63,5 @@ const getUser = async (req, res) => {
     res.status(500).json({ success: 0, error });
   }
 };
-const logout = (req, res) => {
-  try {
-    if (!req.cookies || !req.cookies.token) {
-      return res.status(400).json({ success: 0, msg: "No Token" });
-    }
-    res.clearCookie("token");
-    console.log("hey");
-    return res.status(200).json({ success: 1 });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ success: -1, err });
 
-  }
-};
-module.exports = { postUser, getUser, logout };
+module.exports = { postUser, getUser };
