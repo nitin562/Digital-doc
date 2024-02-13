@@ -382,7 +382,7 @@ export default function TextEditor() {
       [sessionStorage.getItem("email")]: {
         name: sessionStorage.getItem("name"),
         admin: false,
-        Token: Cookies.get("token"),
+        Token: sessionStorage.getItem("token"),
         cursor: {
           top: 0,
           left: 0,

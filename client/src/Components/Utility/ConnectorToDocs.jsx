@@ -82,7 +82,7 @@ export default function ConnectorToDocs() {
       callback({
         name: sessionStorage.getItem("name"),
         email: sessionStorage.getItem("email"),
-        token: Cookies.get("token"),
+        token: sessionStorage.getItem("token"),
       }); //sending my token as connection establish
     }
     setLoad(false);

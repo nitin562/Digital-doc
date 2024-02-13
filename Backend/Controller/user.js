@@ -25,7 +25,7 @@ const postUser = async (req, res) => {
     res.cookie("token", token,{domain:process.env.domain,sameSite:"None",secure:true});
     res
       .status(201)
-      .json({ success: 1, name: storeUser.userName, email: storeUser.email });
+      .json({ success: 1, name: storeUser.userName, email: storeUser.email,token });
   } catch (error) {
     console.log("error-", error);
     res.status(500).json({ success: 0, error });
@@ -57,7 +57,7 @@ const getUser = async (req, res) => {
     res.cookie("token", token,{domain:process.env.domain,sameSite:"None",secure:true});
     res
       .status(201)
-      .json({ success: 1, name: client.userName, email: client.email });
+      .json({ success: 1, name: client.userName, email: client.email,token });
   } catch (error) {
     console.log("error-", error);
     res.status(500).json({ success: 0, error });

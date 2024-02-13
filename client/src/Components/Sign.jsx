@@ -6,7 +6,7 @@ import Design from "./Utility/Design";
 import Loader from "./Utility/Loader";
 import { fetchup, generateColors } from "./UtlilityFunc/helper";
 import { links } from "../links";
-import Cookies from "js-cookie";
+
 
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -41,13 +41,15 @@ export default function Sign() {
     if (result.success === 1) {
       sessionStorage.setItem("name", result.name);
       sessionStorage.setItem("email", result.email);
+      sessionStorage.setItem("token",result.token)
+
       let uuid = uuidv4();
       sessionStorage.setItem("id", uuid);
       onlineUserRef.current = {
         [result.email]: {
           name: result.name,
           admin: false,
-          Token: Cookies.get("token"),
+          Token: result.token,
           cursor: {
             top: 0,
             left: 0,

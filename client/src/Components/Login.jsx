@@ -9,7 +9,7 @@ import {links} from "../links";
 import { useNavigate } from "react-router-dom";
 import {v4 as uuidv4} from "uuid"
 import { context } from "./Context/ContextApi";
-import Cookies from "js-cookie";
+
 import { socket } from "./UtlilityFunc/socketInit";
 export default function Login() {
   const nav=useNavigate()
@@ -28,13 +28,15 @@ export default function Login() {
     if(result.success===1){
       sessionStorage.setItem("name",result.name)
       sessionStorage.setItem("email",result.email)
+      sessionStorage.setItem("token",result.token)
+
       let uuid=uuidv4()
       sessionStorage.setItem("id",uuid)
       onlineUserRef.current={
         [result.email]:{
           name:result.name,
           admin:false,
-          Token:Cookies.get("token"),
+          Token:result.token,
           cursor:{
             top:0,
             left:0
